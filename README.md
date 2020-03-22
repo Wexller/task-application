@@ -14,7 +14,7 @@ CREATE TABLE `accounts` (
     `login` text NOT NULL,
     `password` text NOT NULL,
     `is_admin` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ```
    
 ```
@@ -37,7 +37,7 @@ CREATE TABLE `tasks` (
     `text` text NOT NULL,
     `completed` tinyint(1) NOT NULL DEFAULT '0',
     `text_edited` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ```
    
 ```
