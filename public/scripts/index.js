@@ -171,7 +171,7 @@ $(document).ready(() => {
 
     if (logout) {
       $.get({
-        url: '/account/logout',
+        url: 'account/logout',
         success: () => {
           document.location.reload();
         }
