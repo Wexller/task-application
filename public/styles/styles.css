@@ -1,0 +1,39 @@
+h2 {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.section-tasks {
+    margin-top: 50px;
+}
+
+.login-button-block {
+    display: flex;
+    justify-content: end;
+    margin-top: 16px;
+}
+
+.control-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.control-block ol,
+.control-block ul {
+    margin: 0;
+}
+
+.table-sort {
+    cursor: pointer;
+}
+
+.table td,
+.table th{
+    vertical-align: middle;
+}
+
+.alert-warning {
+    margin-top: 1rem;
+}
