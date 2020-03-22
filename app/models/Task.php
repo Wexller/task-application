@@ -68,9 +68,11 @@ class Task extends Model {
       'id' => $post['id']
     ];
 
-    $textEdited = 0;
+    $taskInfo = $this->db->row('SELECT text, text_edited FROM tasks WHERE id=:id', $param)[0];
 
-    if(strcmp($this->db->column('SELECT text FROM tasks WHERE id=:id', $param), $post['text']) !== 0) {
+    $textEdited = $taskInfo['text_edited'];
+
+    if(strcmp($taskInfo['text'], $post['text']) !== 0) {
       $textEdited = 1;
     }
 
