@@ -11,6 +11,7 @@ Class AccountController extends Controller {
       exit();
     }
 
+    // Запрос логина
     $loginResponse = $this->model->login($_POST);
 
     if (http_response_code() === 400) {
@@ -18,6 +19,7 @@ Class AccountController extends Controller {
       return;
     }
 
+    // Если совпадений нет, то ответ ошибка
     if (empty($loginResponse)) {
       http_response_code(400);
       echo json_encode(array(

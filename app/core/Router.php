@@ -7,6 +7,7 @@ class Router {
   protected $routes = [];
   protected $params = [];
 
+  // Получние маршрутов
   function __construct() {
     $arr = require_once 'app/config/routes.php';
     foreach ($arr as $key => $val) {
@@ -14,12 +15,14 @@ class Router {
     }
   }
 
+  // Изменение маршрутов для регулярного выражения
   public function add($route, $params) {
     $route = preg_replace('/{:query}/', '(\?.*)?', $route);
     $route = "#^$route$#";
     $this->routes[$route] = $params;
   }
 
+  // Поиск совпадений
   function match() {
     $url = trim($_SERVER['REQUEST_URI'], '/');
     foreach ($this->routes as $route => $params) {

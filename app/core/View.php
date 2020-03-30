@@ -14,6 +14,7 @@ class View {
     $this->path = $route['controller'] . '/' . $route['action'];
   }
 
+  // Подключение представления в зависимости от текущего контроллера и передача переменных в шаблон
   public function render($title, $vars = []) {
     extract($vars);
     $path = 'app/views/' . $this->path . '.php';

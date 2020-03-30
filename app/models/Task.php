@@ -10,9 +10,13 @@ class Task extends Model {
   private $minTextLength = 5;
   private $errors = array();
 
+  // Получение списка всех задач
   public function getTasks($get = []) {
+    // Количество страниц для пагинации
     $pagesCount = ceil($this->db->column('SELECT COUNT(*) FROM tasks') / $this->recordsPerPage);
 
+
+    // Параметры для сортировки и текущеая страница
     $page = (isset($_GET['page'])
       && is_numeric($_GET['page'])
       && $_GET['page'] <= $pagesCount
@@ -28,6 +32,7 @@ class Task extends Model {
     );
   }
 
+  // Создание задачи
   public function createTask($post = []) {
     if (empty($post)) {
       http_response_code(400);
@@ -53,6 +58,7 @@ class Task extends Model {
     return 'Задача успешно добавлена';
   }
 
+  // Обновление задачи
   public function updateTask($post = []) {
     if (empty($post)) {
       http_response_code(400);
@@ -72,6 +78,7 @@ class Task extends Model {
 
     $textEdited = $taskInfo['text_edited'];
 
+    // Пометка, что задача отредактирована
     if(strcmp($taskInfo['text'], $post['text']) !== 0) {
       $textEdited = 1;
     }
@@ -103,13 +110,14 @@ class Task extends Model {
     return $this->db->row('SELECT * FROM tasks WHERE id=:id', $params);
   }
 
+  // Разрешенные названия для запроса
   private function is_allow($value) {
     $allowed = array('id', 'name', 'email', 'completed', 'asc', 'desc');
 
     return in_array($value, $allowed);
   }
 
-
+  // Проверка полей на валидность
   private function isValid ($data) {
     foreach ($data as $key => $value) {
       switch ($key) {

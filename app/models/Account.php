@@ -6,7 +6,7 @@ use app\core\Model;
 
 class Account extends Model {
   private $errors = array();
-  private $passwordKey = 'JeeBee';
+  private $passwordKey = 'JeeBee'; // Секретный ключ для хэша
 
   function login($post = []) {
     if (empty($post)) {
@@ -27,8 +27,8 @@ class Account extends Model {
     return $this->db->row("SELECT id, login, is_admin FROM accounts WHERE login=:login AND password=:password", $params);
   }
 
+  // Проверка логина и пароля на валидность
   private function isValid ($data) {
-
     foreach ($data as $key => $value) {
       switch ($key) {
 

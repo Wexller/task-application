@@ -15,6 +15,7 @@ abstract class Controller {
     $this->model = $this->loadModel($route['controller']);
   }
 
+  // Загрузка модели исходя из текущего контроллера
   public function loadModel($name) {
     $path = 'app\models\\' . ucfirst($name);
     if (class_exists($path)) {

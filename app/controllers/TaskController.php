@@ -15,11 +15,13 @@ Class TaskController extends Controller {
     $this->view->render('Список задач', $vars);
   }
 
+  // Создание задачи
   public function createAction() {
     $this->checkRequest($_POST);
     echo json_encode($this->model->createTask($_POST));
   }
 
+  // Получение задачи для редактирования. Если не админ, то вывод ошибки
   public function getTaskAction() {
     if (isset($_SESSION['ADMIN']) && $_SESSION['ADMIN']) {
       $this->checkRequest($_POST);
@@ -30,6 +32,7 @@ Class TaskController extends Controller {
     }
   }
 
+  // Обновление задачи. Если не админ, то вывод ошибки
   public function updateAction() {
     if (isset($_SESSION['ADMIN']) && $_SESSION['ADMIN']) {
       $this->checkRequest($_POST);
@@ -40,6 +43,7 @@ Class TaskController extends Controller {
     }
   }
 
+  // Если пустой запрос, то редирект на главную
   private function checkRequest($query) {
     if (empty($query)) {
       header("Location: /", true, 301);
